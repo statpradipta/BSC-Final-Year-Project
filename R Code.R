@@ -1,3 +1,10 @@
+# Install packages
+install.packages(c("ggplot2", "tidyverse"))
+
+# Call the packages
+library(ggplot2)
+library(tidyverse)
+
 # Import the data
 data <- read.csv("data.csv")
 
@@ -18,15 +25,13 @@ weight_loss_mean <- mean(data$Weight_loss)
 weight_loss_sd <- sd(data$Weight_loss)
 
 # Create a scatterplot of exercise vs. weight loss
-library(ggplot2)
-library(tidyverse)
 ggplot(data, aes(x = Exercise, y = Weight_loss)) +
   geom_point(size = 4, alpha = 0.8, color = "#0072B2") +
   geom_smooth(method = "lm", se = FALSE, color = "#D55E00", size = 1.5) +
   labs(x = "Exercise (Days per week)", y = "Weight Loss (kg)", title = "Exercise vs. Weight Loss in Young Adults",
        subtitle = "Linear Regression Analysis") +
   theme_bw() +
-  theme(plot.title = element_text(color = "#0072B2", size = 18, face = "bold"),
+  theme(plot.title = element_text(color = "#007FFF", size = 18, face = "bold"),
         plot.subtitle = element_text(color = "#0072B2", size = 14),
         axis.title.x = element_text(color = "#0072B2", size = 14, face = "bold"),
         axis.title.y = element_text(color = "#0072B2", size = 14, face = "bold"),
@@ -41,17 +46,18 @@ fit <- lm(Weight_loss ~ Exercise, data = data)
 summary(fit)
 
 # Print descriptive statistics and correlation
-cat("\n","Exercise(Days/week) mean:", exercise_mean, "\n",
-"Exercise(Days/week) standard deviation:", exercise_sd, "\n",
+cat("\n","Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",",",
+"Standard Deviation:", exercise_sd, "\n",
 
-"Starting Weight mean:",inweight_mean,"\n",
-"Starting Weight standard deviation:",inweight_sd,"\n",
+"\n","Starting Weight(in kg) :- ","\n", "Mean:", inweight_mean, "\b",",",
+    "Standard Deviation:", inweight_sd, "\n",
 
-"Final Weight mean:",curweight_mean,"\n",
-"Final Weight standard deviation:",curweight_sd,"\n",
+"\n","Final Weight(in kg) :-","\n", "Mean:", curweight_mean, "\b",",",
+"Standard Deviation:", curweight_sd, "\n",
 
-"Weight loss mean:", weight_loss_mean, "\n",
-"Weight loss standard deviation:", weight_loss_sd, "\n",
 
-"Correlation between exercise and weight loss:", correlation, "\n")
+"\n","Weight loss(in kg) :-","\n", "Mean:", weight_loss_mean, "\b",",",
+"Standard Deviation:", weight_loss_mean, "\n",
+
+"\n","Correlation between exercise and weight loss:", correlation, "\n")
 
