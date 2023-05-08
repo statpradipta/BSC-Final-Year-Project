@@ -7,6 +7,13 @@ data$Weight_loss <- data$Starting_weight - data$Current_weight
 # Calculate descriptive statistics
 exercise_mean <- mean(data$Exercise)
 exercise_sd <- sd(data$Exercise)
+
+inweight_mean<-mean(data$Starting_weight)
+inweight_sd<-sd(data$Starting_weight)
+
+curweight_mean<-mean(data$Current_weight)
+curweight_sd<-sd(data$Current_weight)
+
 weight_loss_mean <- mean(data$Weight_loss)
 weight_loss_sd <- sd(data$Weight_loss)
 
@@ -34,9 +41,17 @@ fit <- lm(Weight_loss ~ Exercise, data = data)
 summary(fit)
 
 # Print descriptive statistics and correlation
-cat("Exercise mean:", exercise_mean, "\n")
-cat("Exercise standard deviation:", exercise_sd, "\n")
-cat("Weight loss mean:", weight_loss_mean, "\n")
-cat("Weight loss standard deviation:", weight_loss_sd, "\n")
-cat("Correlation between exercise and weight loss:", correlation, "\n")
+cat("\n","Exercise(Days/week) mean:", exercise_mean, "\n",
+"Exercise(Days/week) standard deviation:", exercise_sd, "\n",
+
+"Starting Weight mean:",inweight_mean,"\n",
+"Starting Weight standard deviation:",inweight_sd,"\n",
+
+"Final Weight mean:",curweight_mean,"\n",
+"Final Weight standard deviation:",curweight_sd,"\n",
+
+"Weight loss mean:", weight_loss_mean, "\n",
+"Weight loss standard deviation:", weight_loss_sd, "\n",
+
+"Correlation between exercise and weight loss:", correlation, "\n")
 
