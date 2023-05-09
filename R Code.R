@@ -57,7 +57,7 @@ cat("\n","Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",",",
 
 
 "\n","Weight loss(in kg) :-","\n", "Mean:", weight_loss_mean, "\b",",",
-"Standard Deviation:", weight_loss_mean, "\n",
+"Standard Deviation:", weight_loss_sd, "\n",
 
 "\n","Correlation between exercise and weight loss:", correlation, "\n")
 
