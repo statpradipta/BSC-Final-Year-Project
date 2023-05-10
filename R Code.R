@@ -25,19 +25,22 @@ weight_loss_mean <- mean(data$Weight_loss)
 weight_loss_sd <- sd(data$Weight_loss)
 
 # Create a scatterplot of exercise vs. weight loss
-ggplot(data, aes(x = Exercise, y = Weight_loss)) +
+plot<-ggplot(data, aes(x = Exercise, y = Weight_loss)) +
   geom_point(size = 4, alpha = 0.8, color = "#0072B2") +
   geom_smooth(method = "lm", se = FALSE, color = "#D55E00", size = 1.5) +
   labs(x = "Exercise (Days per week)", y = "Weight Loss (kg)", title = "Exercise vs. Weight Loss in Young Adults",
        subtitle = "Linear Regression Analysis") +
-  theme_bw() +
+  theme_bw()+
   theme(plot.title = element_text(color = "#007FFF", size = 18, face = "bold"),
         plot.subtitle = element_text(color = "#0072B2", size = 14),
         axis.title.x = element_text(color = "#0072B2", size = 14, face = "bold"),
         axis.title.y = element_text(color = "#0072B2", size = 14, face = "bold"),
         axis.text = element_text(color = "#0072B2", size = 12),
         legend.title = element_blank(),
-        legend.text = element_text(color = "#0072B2", size = 12))
+        legend.text = element_text(color = "#0072B2", size = 12))+
+scale_x_continuous (limits=c(0,8), expand=c(0,0)) +
+  
+  scale_y_continuous(limits=c(0,50), expand=c(0,0))
 # Calculate correlation between exercise and weight loss
 correlation <- cor(data$Exercise, data$Weight_loss)
 
@@ -61,3 +64,4 @@ cat("\n","Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",",",
 
 "\n","Correlation between exercise and weight loss:", correlation, "\n")
 
+#print(plot)
