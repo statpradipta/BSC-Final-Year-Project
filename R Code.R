@@ -1,5 +1,5 @@
 # Install packages
-install.packages(c("ggplot2", "tidyverse"))
+#install.packages(c("ggplot2", "tidyverse"))
 
 # Call the packages
 library(ggplot2)
@@ -26,11 +26,11 @@ weight_loss_sd <- sd(data$Weight_loss)
 
 # Create a scatterplot of exercise vs. weight loss
 ggplot(data, aes(x = Exercise, y = Weight_loss)) +
-  geom_point(size = 4, alpha = 0.8, color = "#0072B2") +
-  geom_smooth(method = "lm", se = FALSE, color = "#D55E00", size = 1.5) +
+  geom_point(size = 2, alpha = 0.8, color = "#0072B2") +
+  geom_smooth(method = "lm", se = FALSE, color = "#D55E00", size = 1) +
   labs(x = "Exercise (Days per week)", y = "Weight Loss (kg)", title = "Exercise vs. Weight Loss in Young Adults",
-       subtitle = "Linear Regression Analysis") +
-  theme_bw()+
+       subtitle = "Linear Regression Analysis")+
+  theme_classic()+
   theme(plot.title = element_text(color = "#007FFF", size = 18, face = "bold"),
         plot.subtitle = element_text(color = "#0072B2", size = 14),
         axis.title.x = element_text(color = "#0072B2", size = 14, face = "bold"),
@@ -38,8 +38,9 @@ ggplot(data, aes(x = Exercise, y = Weight_loss)) +
         axis.text = element_text(color = "#0072B2", size = 12),
         legend.title = element_blank(),
         legend.text = element_text(color = "#0072B2", size = 12))+
-scale_x_continuous (limits=c(0.9,7.1), expand=c(0,0))+
-scale_y_continuous(limits=c(0,50), expand=c(0,0))
+  scale_x_continuous (limits=c(0.9,7.1), expand=c(0,0))+
+  scale_y_continuous(limits=c(0,50), expand=c(0,0))
+
 # Calculate correlation between exercise and weight loss
 correlation <- cor(data$Exercise, data$Weight_loss)
 
