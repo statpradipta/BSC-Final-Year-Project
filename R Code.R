@@ -1,8 +1,7 @@
 # Install packages
-#install.packages(c("ggplot2", "tidyverse"))
+#install.packages("tidyverse")
 
 # Call the packages
-library(ggplot2)
 library(tidyverse)
 
 # Import the data
@@ -37,8 +36,8 @@ ggplot(data, aes(x = Exercise, y = Weight_loss)) +
         axis.title.y = element_text(color = "#0072B2", size = 14, face = "bold"),
         axis.text = element_text(color = "#0072B2", size = 12),
         legend.title = element_blank(),
-        legend.text = element_text(color = "#0072B2", size = 12))+
-  scale_x_continuous (limits=c(0.9,7.1), expand=c(0,0))+
+        legend.text = element_text(color = "#0072B2", size = 12))+ 
+  scale_x_continuous (limits=c(0.9,7.1), expand=c(0,0))+ 
   scale_y_continuous(limits=c(0,50), expand=c(0,0))
 
 # Calculate correlation between exercise and weight loss
