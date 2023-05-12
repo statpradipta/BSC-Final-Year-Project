@@ -44,9 +44,14 @@ ggplot(data, aes(x = Exercise, y = Weight_loss)) +
 correlation <- cor(data$Exercise, data$Weight_loss)
 
 # Perform linear regression analysis
-fit <- lm(Weight_loss ~ Exercise, data = data)
-summary(fit)
+fit1 <- lm(Weight_loss ~ Exercise, data = data)
+summary(fit1)
 
+fit2 <- lm(Weight_loss ~ Duration, data = data)
+summary(fit2)
+
+fit_combined <- lm(Weight_loss ~ Exercise + Duration, data = data)
+summary(fit_combined)
 # Print descriptive statistics and correlation
 cat("\n","Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",",",
 "Standard Deviation:", exercise_sd, "\n",
@@ -62,3 +67,11 @@ cat("\n","Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",",",
 "Standard Deviation:", weight_loss_sd, "\n",
 
 "\n","Correlation between exercise and weight loss:", correlation, "\n")
+
+
+
+
+
+
+# Calculate the correlation between weight loss and duration of exercise
+cor(data$Weight_loss, data$Duration)
