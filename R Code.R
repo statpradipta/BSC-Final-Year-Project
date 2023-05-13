@@ -38,14 +38,15 @@ ggplot(data, aes(x = Exercise, y = Weight_loss)) +
         legend.title = element_blank(),
         legend.text = element_text(color = "#0072B2", size = 12))+
   geom_hline(yintercept = 0, color = "black", linetype = "dashed")
-  #scale_x_continuous (limits=c(0.9,7.1), expand=c(0,0))+ 
-  #scale_y_continuous(limits=c(0,50), expand=c(0,0))
 
 # Calculate correlation between exercise and weight loss
 correlation1 <- cor(data$Exercise, data$Weight_loss)
 
 # Calculate the correlation between weight loss and duration of exercise
-correlation1 <- cor(data$Weight_loss, data$Duration)
+correlation2 <- cor(data$Weight_loss, data$Duration)
+
+# Calculate correlation between exercise and duration of exercise
+correlation3 <- cor(data$Exercise, data$Duration)
 
 # Perform linear regression analysis
 fit1 <- lm(Weight_loss ~ Exercise, data = data)
@@ -70,8 +71,9 @@ cat("\n","➲ " ,"Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",","
 "\n","➲ ","Weight loss(in kg) :-","\n", "Mean:", weight_loss_mean, "\b",",",
 "Standard Deviation:", weight_loss_sd, "\n",
 
-"\n","➲ ","Correlation between exercise(Days/week) and weight loss:", correlation, "\b",",","\n",
-"\n","➲ ","Correlation between Duration of exercise(in mins) and weight loss:", correlation, "\n")
+"\n","➲ ","Correlation between exercise(Days/week) and weight loss:", correlation1, "\b",",","\n",
+"\n","➲ ","Correlation between Duration of exercise(in mins) and weight loss:", correlation2, "\b",",","\n",
+"\n","➲ ","Correlation between exercise(Days/week) and Duration of exercise(in mins):", correlation2, "\n")
 
 
 
