@@ -70,8 +70,5 @@ cat("\n","Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",",",
 
 
 
-
-
-
 # Calculate the correlation between weight loss and duration of exercise
 cor(data$Weight_loss, data$Duration)
