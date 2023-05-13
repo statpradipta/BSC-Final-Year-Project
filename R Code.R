@@ -27,21 +27,25 @@ weight_loss_sd <- sd(data$Weight_loss)
 ggplot(data, aes(x = Exercise, y = Weight_loss)) +
   geom_point(size = 2, alpha = 0.8, color = "#0072B2") +
   geom_smooth(method = "lm", se = FALSE, color = "#D55E00", size = 1) +
-  labs(x = "Exercise (Days per week)", y = "Weight Loss (kg)", title = "Exercise vs. Weight Loss in Young Adults",
+  labs(x = "Exercise (Days per week) ➯ ", y = "Weight Loss (kg) ➯ ", title = "Exercise vs. Weight Loss in Young Adults",
        subtitle = "Linear Regression Analysis")+
-  theme_classic()+
+  theme_bw()+
   theme(plot.title = element_text(color = "#007FFF", size = 18, face = "bold"),
         plot.subtitle = element_text(color = "#0072B2", size = 14),
         axis.title.x = element_text(color = "#0072B2", size = 14, face = "bold"),
         axis.title.y = element_text(color = "#0072B2", size = 14, face = "bold"),
         axis.text = element_text(color = "#0072B2", size = 12),
         legend.title = element_blank(),
-        legend.text = element_text(color = "#0072B2", size = 12))+ 
-  scale_x_continuous (limits=c(0.9,7.1), expand=c(0,0))+ 
-  scale_y_continuous(limits=c(0,50), expand=c(0,0))
+        legend.text = element_text(color = "#0072B2", size = 12))+
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed")
+  #scale_x_continuous (limits=c(0.9,7.1), expand=c(0,0))+ 
+  #scale_y_continuous(limits=c(0,50), expand=c(0,0))
 
 # Calculate correlation between exercise and weight loss
-correlation <- cor(data$Exercise, data$Weight_loss)
+correlation1 <- cor(data$Exercise, data$Weight_loss)
+
+# Calculate the correlation between weight loss and duration of exercise
+correlation1 <- cor(data$Weight_loss, data$Duration)
 
 # Perform linear regression analysis
 fit1 <- lm(Weight_loss ~ Exercise, data = data)
@@ -53,22 +57,22 @@ summary(fit2)
 fit_combined <- lm(Weight_loss ~ Exercise + Duration, data = data)
 summary(fit_combined)
 # Print descriptive statistics and correlation
-cat("\n","Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",",",
+cat("\n","➲ " ,"Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",",",
 "Standard Deviation:", exercise_sd, "\n",
 
-"\n","Starting Weight(in kg) :- ","\n", "Mean:", inweight_mean, "\b",",",
+"\n","➲ ","Starting Weight(in kg) :- ","\n", "Mean:", inweight_mean, "\b",",",
     "Standard Deviation:", inweight_sd, "\n",
 
-"\n","Final Weight(in kg) :-","\n", "Mean:", curweight_mean, "\b",",",
+"\n","➲ ","Final Weight(in kg) :-","\n", "Mean:", curweight_mean, "\b",",",
 "Standard Deviation:", curweight_sd, "\n",
 
 
-"\n","Weight loss(in kg) :-","\n", "Mean:", weight_loss_mean, "\b",",",
+"\n","➲ ","Weight loss(in kg) :-","\n", "Mean:", weight_loss_mean, "\b",",",
 "Standard Deviation:", weight_loss_sd, "\n",
 
-"\n","Correlation between exercise and weight loss:", correlation, "\n")
+"\n","➲ ","Correlation between exercise(Days/week) and weight loss:", correlation, "\b",",","\n",
+"\n","➲ ","Correlation between Duration of exercise(in mins) and weight loss:", correlation, "\n")
 
 
 
-# Calculate the correlation between weight loss and duration of exercise
-cor(data$Weight_loss, data$Duration)
+
