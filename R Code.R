@@ -73,8 +73,4 @@ cat("\n","➲ " ,"Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",","
 
 "\n","➲ ","Correlation between exercise(Days/week) and weight loss:", correlation1, "\b",",","\n",
 "\n","➲ ","Correlation between Duration of exercise(in mins) and weight loss:", correlation2, "\b",",","\n",
-"\n","➲ ","Correlation between exercise(Days/week) and Duration of exercise(in mins):", correlation2, "\n")
-
-
-
-
+"\n","➲ ","The combined Correlation between Weight loss(in kgs) and Exercise(Days/week), Duration of exercise(in mins):", correlation2, "\n")
