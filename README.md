@@ -1,2 +1,2 @@
-# Final-Year-Project
-This study used a randomized controlled trial design to test the hypothesis that regular exercise leads to weight loss in young adults.
+#B.Sc. Final-Year-Project
+The Effect of Exercise on Weight Loss in Young Adults: A Descriptive and Regression Analysis
