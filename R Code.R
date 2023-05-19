@@ -10,6 +10,11 @@ data <- read.csv("data.csv")
 # Calculate Weight_loss as Starting_weight - Current_weight
 data$Weight_loss <- data$Starting_weight - data$Current_weight
 
+# Perform Shapiro-Wilk test
+shapiro.test(data$Starting_weight)
+shapiro.test(data$Current_weight)
+shapiro.test(data$Weight_loss)
+
 # Calculate descriptive statistics
 exercise_mean <- mean(data$Exercise)
 exercise_sd <- sd(data$Exercise)
@@ -55,9 +60,10 @@ summary(fit1)
 fit2 <- lm(Weight_loss ~ Duration, data = data)
 summary(fit2)
 
-fit_combined <- lm(Weight_loss ~ Exercise + Duration, data = data)
-fit_combined
-summary(fit_combined)
+#fit_combined <- lm(Weight_loss ~ Exercise + Duration, data = data)
+#fit_combined
+#summary(fit_combined)
+
 # Print descriptive statistics and correlation
 cat("\n","➲ " ,"Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",",",
 "Standard Deviation:", exercise_sd, "\n",
@@ -73,5 +79,9 @@ cat("\n","➲ " ,"Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",","
 "Standard Deviation:", weight_loss_sd, "\n",
 
 "\n","➲ ","Correlation between exercise(Days/week) and weight loss:", correlation1, "\b",",","\n",
-"\n","➲ ","Correlation between Duration of exercise(in mins) and weight loss:", correlation2, "\b",",","\n",
-"\n","➲ ","The combined Correlation between Weight loss(in kgs) and Exercise(Days/week), Duration of exercise(in mins):", correlation3, "\n")
+"\n","➲ ","Correlation between Duration of exercise(in mins) and weight loss:", correlation2, "\b",",","\n")
+#"\n","➲ ","The combined Correlation between Weight loss(in kgs) and Exercise(Days/week), Duration of exercise(in mins):", correlation3, "\n")
+
+# Group the entries by the "Type of Exercise" column
+grouped_exercises <- split(data, data$Type.of.Exercise)
+
