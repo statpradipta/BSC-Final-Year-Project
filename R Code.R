@@ -54,15 +54,18 @@ correlation2 <- cor(data$Weight_loss, data$Duration)
 correlation3 <- cor(data$Exercise, data$Duration)
 
 # Perform linear regression analysis
-fit1 <- lm(Weight_loss ~ Exercise, data = data)
-summary(fit1)
+#fit1 <- lm(Weight_loss ~ Exercise, data = data)
+#summary(fit1)
 
-fit2 <- lm(Weight_loss ~ Duration, data = data)
-summary(fit2)
+#fit2 <- lm(Weight_loss ~ Duration, data = data)
+#summary(fit2)
 
-#fit_combined <- lm(Weight_loss ~ Exercise + Duration, data = data)
-#fit_combined
-#summary(fit_combined)
+X=data.frame(data$Weight_loss,data$Exercise,data$Duration)
+plot(X)
+
+fit_combined <- lm(Weight_loss ~ Exercise + Duration, data = data)
+fit_combined
+summary(fit_combined)
 
 # Print descriptive statistics and correlation
 cat("\n","➲ " ,"Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",",",
@@ -80,8 +83,20 @@ cat("\n","➲ " ,"Exercise(Days/week) :-","\n", "Mean:", exercise_mean, "\b",","
 
 "\n","➲ ","Correlation between exercise(Days/week) and weight loss:", correlation1, "\b",",","\n",
 "\n","➲ ","Correlation between Duration of exercise(in mins) and weight loss:", correlation2, "\b",",","\n")
-#"\n","➲ ","The combined Correlation between Weight loss(in kgs) and Exercise(Days/week), Duration of exercise(in mins):", correlation3, "\n")
 
-# Group the entries by the "Type of Exercise" column
-grouped_exercises <- split(data, data$Type.of.Exercise)
+# Perform ANOVA
+anova_result <- aov(data$Weight_loss ~ data$Type.of.Exercise, data)
+
+# Calculate the average weight loss for each exercise type
+avg_weight_loss <- aggregate(data$Weight_loss ~ data$Type.of.Exercise, data, mean)
+
+# Find the exercise type with the highest average weight loss
+best_exercise <- avg_weight_loss[which.max(avg_weight_loss$`data$Weight_loss`), "data$Type.of.Exercise"]
+
+# Print the result
+cat("The One-way Anova Table is as follow:","\n")
+summary(anova_result)
+
+cat("The best exercise for weight loss is:\033[1m", best_exercise,"\033[0m\n")
+
 
