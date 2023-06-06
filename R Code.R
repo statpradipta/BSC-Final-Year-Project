@@ -28,6 +28,27 @@ curweight_sd<-sd(data$Current_weight)
 weight_loss_mean <- mean(data$Weight_loss)
 weight_loss_sd <- sd(data$Weight_loss)
 
+# Set color for the boxplots
+my_color <- c("#FF8C00", "#4169E1")  # Orange and Royal Blue
+
+par(mfrow = c(1, 2), mar = c(5, 4, 4, 2) + 0.1, oma = c(0, 0, 2, 0))
+
+# Boxplot of starting weight
+boxplot(data$Starting_weight,
+        main = "Starting Weight",
+        ylab = "Weight (kg)",
+        col = my_color[1])
+
+# Boxplot of current weight
+boxplot(data$Current_weight,
+        main = "Current Weight",
+        ylab = "Weight (kg)",
+        col = my_color[2])
+
+# Add label to the entire grid
+mtext("BOX PLOT OF STARTING AND CURRENT WEIGHTS OF THE PARTICIPANTS", outer = TRUE, cex = 1.5, col = "#007FFF")
+
+
 # Create a scatterplot of exercise vs. weight loss
 ggplot(data, aes(x = Exercise, y = Weight_loss)) +
   geom_point(size = 2, alpha = 0.8, color = "#0072B2") +
@@ -43,25 +64,13 @@ ggplot(data, aes(x = Exercise, y = Weight_loss)) +
         legend.title = element_blank(),
         legend.text = element_text(color = "#0072B2", size = 12))+
   geom_hline(yintercept = 0, color = "black", linetype = "dashed")
+  
 
 # Calculate correlation between exercise and weight loss
 correlation1 <- cor(data$Exercise, data$Weight_loss)
 
 # Calculate the correlation between weight loss and duration of exercise
 correlation2 <- cor(data$Weight_loss, data$Duration)
-
-# Calculate correlation between exercise and duration of exercise
-correlation3 <- cor(data$Exercise, data$Duration)
-
-# Perform linear regression analysis
-#fit1 <- lm(Weight_loss ~ Exercise, data = data)
-#summary(fit1)
-
-#fit2 <- lm(Weight_loss ~ Duration, data = data)
-#summary(fit2)
-
-X=data.frame(data$Weight_loss,data$Exercise,data$Duration)
-plot(X)
 
 fit_combined <- lm(Weight_loss ~ Exercise + Duration, data = data)
 fit_combined
